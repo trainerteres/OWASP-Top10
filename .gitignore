@@ -1,0 +1,46 @@
+# Folders
+[Pp]ackages/
+[Bb]in/
+[Oo]bj/
+[Rr]elease/
+[Dd]ebug/
+[Bb]ackup*/
+.vs/
+*[Cc]lient[Bb]in/
+
+# Files
+*.suo
+*.user
+UpgradeLog*.htm
+*.dbmdl
+*.[Cc]ache
+*[Ll]ocal.config
+**/Properties/VersionInfo.cs
+
+# Ignored to allow the build to use Web.Template.config with the required transform to build the web.config.
+/Main/Websites/CivicaAT/Web.config
+/Main/Websites/MockServices/MockUniStore/Web.config
+/Main/Tests/Integration/BusinessLogic/Core.Tests.Integration/App.config
+/Main/Tests/Integration/BusinessLogic/PES.Notices.Tests.Integration/App.config
+/Main/Websites/PAYMENTWEBSERVICE/Web.config
+/Main/Websites/NoticeImportController/Web.config
+/Main/Websites/NoticeDetails/Web.config
+/Main/CEWebPortal/CEWebPortal/Web.config
+/Main/Websites/PAFAddressLookup/Web.config
+/Main/Websites/UniStoreWebServiceV3/Web.config
+
+#Ignore other files
+/Main/ClientSidePrinting/ClientSidePrinting/Generated_Code/ClientSidePrinting.Web.g.cs
+/Main/Websites/CivicaAT/App_Data/CivicaSystemsLtd.xml
+/Main/Websites/CivicaAT/App_Data/BulkProcessor.xml
+/Main/Websites/CivicaAT/Areas/HelpPage/XsdGenerator.txt
+/Main/Services/Core.Correspondence.DocumentMergeService/Configurations/Config.xml
+/Main/Services/Core.Correspondence.DocumentMergeService/Configurations/Config.Local.xml
+/Main/Websites/CivicaAT/Areas/HelpPage/XsdGenerator.txt
+/Main/CEWebPortal/CEWebPortal.db/CEWebPortal.db.jfm
+/Main/Services/BatchPrintResponseService/FileProcessorConfig.Local.xml
+/Main/Setups/FinancialsServiceInstaller/ProductBinaries.wxs
+/Main/Setups/WarrantServiceSetup/ProductBinaries.wxs
+.idea
+/Main/DB/Migrations/9999-99999-ABJS
+/Main/Services/InboundCorrespondenceService/FileProcessorConfig.Local.xml
