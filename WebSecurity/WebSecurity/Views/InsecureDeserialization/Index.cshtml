@@ -1,0 +1,88 @@
+﻿
+@{
+    ViewBag.Title = "Owasp - Insecure deserialization";
+}
+
+@{
+    Response.Headers.Remove("X-Frame-Options");
+}
+
+<h2>Insecure deserialization.</h2>
+
+<div id="accordion">
+    <div class="card">
+        <div class="card-header">
+            <a class="card-link" data-toggle="collapse" href="#collapseZero">
+                Demo
+            </a>
+        </div>
+        <div id="collapseZero" class="collapse show" data-parent="#accordion">
+            <div class="card-body">
+                @using (Html.BeginForm("InsecureRequest", "InsecureDeserialization", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+
+
+                    <div class="form-horizontal">
+                        <h4>TestTable1</h4>
+                        <div class="form-group">
+                            @Html.Label("Request Text", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextArea("value", new { @id = "value", @rows = 4, @cols = 120 })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="SendRequest" class="btn btn-outline-primary" />
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <a class="card-link" data-toggle="collapse" href="#collapseOne">
+                Serialization instances
+            </a>
+        </div>
+        <div id="collapseOne" class="collapse" data-parent="#accordion">
+            <div class="card-body">
+                <ol>
+                    <li>Remote- and inter-process communication (RPC/IPC)</li>
+                    <li>Wire protocols, web services, message brokers</li>
+                    <li>Caching/Persistence</li>
+                    <li>Databases, cache servers, file systems</li>
+                    <li>Http Cookies, HTML Form parameters, API Auth tokens</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
+                Coding Precautions!!!
+            </a>
+        </div>
+        <div id="collapseTwo" class="collapse" data-parent="#accordion">
+            <div class="card-body">
+                <ol>
+                    <li>Don't allow the datastream to define the type of object.</li>
+                    <li>Use DataContractSerializer and XmlSerializer where ever possible.</li>
+                    <li>Where JSON.Net is being used set TypeNameHandling to None
+                        <ol>
+                            <li>
+                                TypeNameHandling = TypeNameHandling.None;
+                            </li>
+                        </ol>
+                    </li>
+                    <li>Applications, frameworks, application servers, web servers, database servers and platforms</li>
+                    <li>Keep all the packages upto date</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@Html.AntiForgeryToken()
+
+@{
+    Response.Headers.Remove("X-Frame-Options");
+}
+
+<div id="accordion">
+    <div class="card">
+        <div class="card-header">
+            <a class="card-link" data-toggle="collapse" href="#collapseOne">
+                Cross-site request forgery
+            </a>
+        </div>
+        <div id="collapseOne" class="collapse show" data-parent="#accordion">
+            <div class="card-body">
+                <ol>
+                    <li>Use the vulurability scanner for whole web-site. (Online or offline)</li>
+                    <li>
+                        For Asp.net ViewState use
+                        <code>
+                            <br/>protected override OnInit(EventArgs e) 
+                            <br/>{
+                            <br/> &nbsp;&nbsp;&nbsp;  base.OnInit(e);
+                            <br/> &nbsp;&nbsp;&nbsp; ViewStateUserKey = Session.SessionID;
+                            <br/>}
+                        </code>
+                    </li>
+                    <li>Send the anti-forgery with each form requests using <code>Html.AntiForgeryToken()</code></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+

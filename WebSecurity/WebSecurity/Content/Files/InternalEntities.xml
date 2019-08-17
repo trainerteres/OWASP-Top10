@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE student 
+[
+  <!ELEMENT student (firstname, lastname)>
+  <!ELEMENT firstname (#PCDATA)>
+  <!ELEMENT lastname (#PCDATA)>
+  <!ENTITY firstname "Rob">
+  <!ENTITY lastname "Stark">
+]>
+<student>
+  <firstname>&firstname;</firstname>
+  <lastname>&lastname;</lastname>
+</student>

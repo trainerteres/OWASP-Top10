@@ -1,0 +1,103 @@
+﻿
+@{
+    ViewBag.Title = "Owasp - Injection";
+}
+
+@Html.AntiForgeryToken()
+
+<h2>Injection</h2>
+<div id="accordion">
+    <div class="card">
+        <div class="card-header">
+            <a class="card-link" data-toggle="collapse" href="#collapseOne">
+                ADO.net SQL Injection
+            </a>
+        </div>
+        <div id="collapseOne" class="collapse show" data-parent="#accordion">
+            <div class="card-body">
+                @using (Html.BeginForm("AdoNetInjection", "Injection", FormMethod.Post, new { @class = "form" }))
+                {
+                    Response.Headers.Remove("X-Frame-Options");
+                    <div class="form-group row">
+                        <label class="col-2 col-form-label">Name:</label>
+                        <div class="col-4">
+                            @Html.TextBox("adoNetNameTxt", string.Empty, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="offset-2">
+                            <input type="submit" class="form-control btn btn-primary" value="submit" style="margin-left:16px" />
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <a class="card-link" data-toggle="collapse" href="#collapseTwo">
+                EF raw SQL query - SQL Injection
+            </a>
+        </div>
+        <div id="collapseTwo" class="collapse" data-parent="#accordion">
+            <div class="card-body">
+                @using (Html.BeginForm("EFInjection", "Injection", FormMethod.Post, new { @class = "form" }))
+                {
+                    Response.Headers.Remove("X-Frame-Options");
+                    <div class="form-group row">
+                        <label class="col-2 col-form-label">Name:</label>
+                        <div class="col-4">
+                            @Html.TextBox("efInjectionTxt", string.Empty, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="offset-2">
+                            <input type="submit" class="form-control btn btn-primary" value="submit" style="margin-left:16px" />
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <a class="card-link" data-toggle="collapse" href="#collapseThree">
+                Coding Precautions!!!
+            </a>
+        </div>
+        <div id="collapseThree" class="collapse" data-parent="#accordion">
+            <div class="card-body">
+                <ol>
+                    <li>Restrict length of Text inputs, and put appropriate client side validations</li>
+                    <li>Have server side validations</li>
+                    <li>Validate query strings, cookies, file and url paths</li>
+                    <li>Use Url encode and html encoding</li>
+                    <li>Always pass variables as sql parameters, with ADO.net and with EF</li>
+                    <li>Secured SQL command needs in whole application!</li>
+                    <li>Remove the permission for inbuilt SP like xp_cmdshell</li>
+                    <li>Make sure that the ASP.net and database errors are not returned to the client</li>
+                    <li>Be careful or avoid the inline query with search or filter.</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <a class="card-link" data-toggle="collapse" href="#collapseFour">
+                Advanced Topics
+            </a>
+        </div>
+        <div id="collapseFour" class="collapse" data-parent="#accordion">
+            <div class="card-body">
+                <ol>
+                    <li>XPath Injection</li>
+                    <li>LDAP Injection</li>
+                    <li>CORS Headers Injection</li>
+                    <li>CORS Request Injection</li>
+                    <li><a href="https://cheatsheetseries.owasp.org/cheatsheets/Injection_Prevention_Cheat_Sheet.html">Injection Cheat Sheet</a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,82 @@
+﻿@model WebSecurity.Models.TestTable1
+
+@{
+    ViewBag.Title = "Cross site scripting handling.";
+}
+
+<h2>Persistence</h2>
+
+<div id="accordion">
+    <div class="card">
+        <div class="card-header">
+            <a class="card-link" data-toggle="collapse" href="#collapseOne">
+                Securing XSS
+            </a>
+        </div>
+        <div id="collapseOne" class="collapse show" data-parent="#accordion">
+            <div class="card-body">
+
+                @using (Html.BeginForm("SecureXSS", "CrossSiteScript", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    Response.Headers.Remove("X-Frame-Options");
+
+                    <div class="form-horizontal">
+                        <h4>TestTable1</h4>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Field1, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(model => model.Field1, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Field1, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Field2, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.TextAreaFor(model => model.Field2, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Field2, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Create" class="btn btn-outline-primary" />
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <a class="card-link" data-toggle="collapse" href="#collapseTwo">
+                Information
+            </a>
+        </div>
+        <div id="collapseTwo" class="collapse" data-parent="#accordion">
+            <div class="card-body">
+                <ol>
+                    <li>Use the <b>AntiXSSEncoder</b> from System.Web.Security.AntiXss namespace</li>
+                    <li><b>Why...?</b> To safely handle inputs in html controls, javascript and css.</li>
+                    <li><b>HttpUtility.HtmlEncode</b> or <b>Server.HtmlEncode</b> only encodes <>"& characters.</li>
+                    <li>AntiXSS works with white-list against the other encoders working with black-listing.</li>
+                    <li>In Web.config set &lt;httpRuntime encoderType="System.Web.Security.AntiXss.AntiXssEncoder" /&gt;</li>
+                    <li>Latest versions shows AntiXss's encoding methods as deprecated.</li>
+                    <li>Use <b>Microsoft.Security.Application.Encoder</b> methods.</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>

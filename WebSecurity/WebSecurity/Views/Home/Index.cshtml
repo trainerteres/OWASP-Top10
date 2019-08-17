@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+@Html.AntiForgeryToken()
+@{
+    Response.Headers.Remove("X-Frame-Options");
+}
+
+
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-md-2">
+            <img height="150" width="200" src="~/Content/Images/owasp.png" />
+        </div>
+        <div class="col-md-7">
+            <div style="">
+                <h1>OWASP</h1>
+                <p class="lead">The Open Web Application Security Project</p>
+                <p>It all about Web and Security!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>OWASP</h2>
+        <p><a href="https://www.owasp.org/index.php/Main_Page">Homepage</a></p>
+        <p><a href="https://www.owasp.org/images/7/72/OWASP_Top_10-2017_%28en%29.pdf.pdf">OWASP Top 10</a></p>
+        <p><a href="https://cheatsheetseries.owasp.org/cheatsheets/DotNet_Security_Cheat_Sheet.html">Dot Net Cheat Sheet</a></p>
+        <p><a href="https://www.owasp.org/index.php/OWASP_Zed_Attack_Proxy_Project">OWASP ZAP</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>CWE</h2>
+        <p>
+            <a href="https://cwe.mitre.org/">Common Weakness Enumeration</a>
+        </p>
+    </div>
+    <div class="col-md-4">
+        <h2>Pen Test</h2>
+        <p><a href="https://www.oracle.com/technetwork/server-storage/virtualbox/overview/index.html">Oracle VM</a></p>
+        <p><a href="https://itsfoss.com/install-kali-linux-virtualbox/">Kali Linux</a></p>
+        <p><a href="https://www.owasp.org/index.php/Category:OWASP_WebGoat_Project">OWASP WebGoat Project</a></p>
+    </div>
+</div>

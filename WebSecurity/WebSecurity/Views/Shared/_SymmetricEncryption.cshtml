@@ -1,0 +1,67 @@
+﻿@model  WebSecurity.Models.EncryptionModel
+
+@{
+    ViewBag.Title = "Symmetric Encryption";
+}
+
+<style>
+
+.text-area {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+</style>
+
+<div id="accordionSymmetric">
+    <div class="card">
+        <div class="card-header">
+            <a class="card-link" data-toggle="collapse" href="#collapseOneSymmetric">
+                Symmetric Encryption
+            </a>
+        </div>
+        <div id="collapseOneSymmetric" class="collapse show" data-parent="#accordionSymmetric">
+            <div class="card-body" id="SymmetricDiv">
+                @using (Ajax.BeginForm("SymmetricEncrypt", "SensitiveData", new AjaxOptions
+                {
+                    HttpMethod = "Post",
+                    OnSuccess = "SymmetricEncryptionSuccess"
+                }))
+                {
+                    <div class="form-group row">
+                        <label class="col-2 col-form-label">Text to Encrypt:</label>
+                        <div class="col-4">
+                            @Html.TextAreaFor(m => m.PlainText, new { @class = "text-area", @rows = 6, @cols = 120 })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-2 col-form-label">Key:</label>
+                        <div class="col-4">
+                            @Html.TextAreaFor(m => m.PrivateKey, new { @class = "text-area", @rows = 6, @cols = 120 })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-2 col-form-label">Initialization Vector:</label>
+                        <div class="col-4">
+                            @Html.TextAreaFor(m => m.InitializationVector, new { @class = "text-area", @rows = 6, @cols = 120 })
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-2 col-form-label">Encrypted Text:</label>
+                        <div class="col-4">
+                            @Html.TextAreaFor(m => m.EncryptedText, new { @class = "text-area", @rows = 6, @cols = 120 })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="offset-2 btn-group">
+                            <input type="submit" class="form-control btn btn-primary" value="Encrypt" name="ButtonType" style="margin-left:16px" />
+                            <input type="submit" class="form-control btn btn-primary" value="Decrypt" name="ButtonType" />
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

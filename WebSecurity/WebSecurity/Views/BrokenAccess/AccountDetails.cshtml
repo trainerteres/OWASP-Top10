@@ -1,0 +1,53 @@
+﻿@model  WebSecurity.Models.AccountNumber
+
+@{
+    ViewBag.Title = "Owasp - Broken Access";
+}
+
+<h2>InsecuredDirectObjRef</h2>
+
+@Html.AntiForgeryToken()
+
+<div class="card-text">
+    @if (Model != null)
+    {
+        <form>
+            <div class="form-group row">
+                <label class="col-2 form-label">Account Number:</label>
+                <div class="col-4">
+                    @Html.DisplayFor(x => x.Number, new { @class = "form-label" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="form-label col-2">Name:</label>
+                <div class="col-4">
+                    @Html.DisplayFor(x => x.Name, new { @class = "form-label" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="form-label col-2">Date Of Birth:</label>
+                <div class="col-4">
+                    @Html.DisplayFor(x => x.DateOfBirth, new { @class = "form-label" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label class="form-label col-2">Balance:</label>
+                <div class="col-4">
+                    @Html.DisplayFor(x => x.Balance, new { @class = "form-label" })
+                </div>
+            </div>
+        </form>
+    }
+    else
+    {
+        <form>
+            <div class="form-group row">
+                <label class="col-2 form-label">Account Number:</label>
+                <div class="col-4">
+                    No account details found
+                </div>
+            </div>
+        </form>
+    }
+</div>
+

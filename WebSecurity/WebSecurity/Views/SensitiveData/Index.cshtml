@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "Owasp - Sensitivity Data";
+}
+
+<div style="margin-top:40px"></div>
+
+@Html.AntiForgeryToken()
+
+@{
+    Response.Headers.Remove("X-Frame-Options");
+}
+
+@{ Html.RenderPartial("_SymmetricEncryption"); }
+@{ Html.RenderPartial("_AsymmetricEncryption"); }
+
+<div id="accordion">
+    <div class="card">
+        <div class="card-header">
+            <a class="card-link" data-toggle="collapse" href="#collapseOne">
+                Coding Precautions!!!
+            </a>
+        </div>
+        <div id="collapseOne" class="collapse" data-parent="#accordion">
+            <div class="card-body">
+                <ol>
+                    <li>More related to information classification and security policy</li>
+                    <li>Encoding vs Obfuscation vs Encryption vs Hashing</li>
+                    <li>Rainbow tables for password cracking</li>
+                    <li><b>Salt</b> : some unique value that can be added to the original password to ensure the hashed value is unique</li>
+                    <li>Password-based key derivation - eg bcrypt, scrypt, PBKDF2</li>
+                    <li>Good News! : Microsoft Identity does password hashing with PBKDF2 with HMAC-SHA1, 128-bit salt, 256-bit subkey, 1000 iterations.</li>
+                    <li>Demo : Crypto Class and <a href="https://www.grc.com/haystack.htm">https://www.grc.com/haystack.htm</a></li>
+                    <li>Symmetric Encryption: the same key encrypts and decrypts data, the key is secret</li>
+                    <li>Asymmetric Encryption: uses two keys; a non-secret key that encrypts the data and a secret key that decrypts the data</li>
+                    <li>Authenticated Encryption: uses two keys, one to encrypt the original plaintext.  The other generates a message authentication code (MAC) of the entire message</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/custom/sensitiveData")
+}

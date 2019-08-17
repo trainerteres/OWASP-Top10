@@ -1,0 +1,111 @@
+﻿
+@{
+    ViewBag.Title = "OWASP - Broken Authentication";
+    var userName = ViewData["UserName"].ToString();
+}
+
+<h2>Broken Authentication and Session Management</h2>
+
+@Html.AntiForgeryToken()
+@{
+    Response.Headers.Remove("X-Frame-Options");
+}
+
+<div id="accordion">
+    <!--<div class="card">
+        <div class="card-header">
+            <a class="card-link" data-toggle="collapse" href="#collapseOne">
+                Normal Handling : Unauthorized Access
+            </a>
+        </div>
+        <div id="collapseOne" class="collapse show" data-parent="#accordion">
+            <div class="card-body">
+                @using (Html.BeginForm("BrokenAuthentication", "UnAuthor", FormMethod.Post, new { @class = "form" }))
+                {
+                    <div class="form-group row">
+                        <label class="col-2 col-form-label">User Name:</label>
+                        <div class="col-4">
+                            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                            {
+                                @Html.TextBox("NameTxt", userName, new { @class = "form-control" })
+                            }
+                            else
+                            {
+                                @Html.Label("NameLabel", userName)
+                            }
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="offset-2">
+                            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                            {
+                                <input type="submit" class="form-control btn btn-primary" value="submit" style="margin-left:16px" />
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <a class="card-link" data-toggle="collapse" href="#collapseTwo">
+                Only authorized Access
+            </a>
+        </div>
+        <div id="collapseTwo" class="collapse" data-parent="#accordion">
+            <div class="card-body">
+                @using (Html.BeginForm("BrokenAuthentication", "Injection", FormMethod.Post, new { @class = "form" }))
+                {
+                    <div class="form-group row">
+                        <label class="col-2 col-form-label">User Name:</label>
+                        <div class="col-4">
+                            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                            {
+                                @Html.TextBox("NameTxt", userName, new { @class = "form-control" })
+                            }
+                            else
+                            {
+                                @Html.Label("NameLabel", userName)
+                            }
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="offset-2">
+                            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                            {
+                                <input type="submit" class="form-control btn btn-primary" value="submit" style="margin-left:16px" />
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>-->
+    <div class="card">
+        <div class="card-header">
+            <a class="card-link" data-toggle="collapse" href="#collapseThree">
+                Coding Precautions!!!
+            </a>
+        </div>
+        <div id="collapseThree" class="collapse show" data-parent="#accordion">
+            <div class="card-body">
+                <ol>
+                    <li>Create cookies with custom contents</li>
+                    <li>Ensure cookies are sent via Http Only, by setting CookieHttpOnly=true;<br/>
+                        <code>
+                            CookieHttpOnly = true,<br/>
+                            ExpireTimeSpan = TimeSpan.FromMinutes(60),<br/>
+                            SlidingExpiration = false,
+                        </code>
+                    </li>
+                    <li>Ensure cookie is sent over https in the production environment, web.config</li>
+                    <li>For the new projects, try to use the inbuilt .net, Identity framework Authentication.</li>
+                    <li>Properly handle the use cases for forget password.</li>
+                    <li>Throttle the requests, for example custom AllowXRequestsEveryXSecondsAttribute</li>
+                    <li><a hef="https://stackoverflow.com/questions/29039537/how-to-setup-password-expiration-using-asp-net-identity-framework/29042692">Password Renewal Policy</a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>

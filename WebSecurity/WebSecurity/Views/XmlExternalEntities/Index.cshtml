@@ -1,0 +1,189 @@
+﻿@model WebSecurity.Models.StudentXxe
+
+@{
+    ViewBag.Title = "Owasp - Xml External Entities";
+}
+
+@Html.AntiForgeryToken()
+
+@{
+    Response.Headers.Remove("X-Frame-Options");
+}
+
+<br/>
+<div id="accordion">
+    <div class="card">
+        <div class="card-header">
+            <a class="card-link" data-toggle="collapse" href="#collapseZero">
+                Demo
+            </a>
+        </div>
+        <div id="collapseZero" class="collapse show" data-parent="#accordion">
+            <div class="card-body">
+                <div class="alert alert-primary">
+                    <lable>Download files: </lable>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-link" onClick="location.href='@Url.Action("InnocentXml", "XmlExternalEntities")'">Innocent Xml</button>
+                        <button type="button" class="btn btn-link" onclick="location.href='@Url.Action("InternalEntitiesXml", "XmlExternalEntities")'">Internal Entities Xml</button>
+                        <button type="button" class="btn btn-link" onclick="location.href='@Url.Action("ExternalEntitiesXml", "XmlExternalEntities")'">External Entities Xml</button>
+                    </div>
+                </div>
+                <div class="alert alert-info">
+                    @using (Html.BeginForm("UploadFile", "XmlExternalEntities", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+                        <div>
+                            Upload File:
+                            @Html.TextBox("file", "", new { type = "file" })
+                            <br />
+                            <br />
+                            <input type="submit" class="btn btn-primary" value="Upload" />
+                        </div>
+                    }
+                </div>
+                <div class="alert alert-secondary">
+                    <div class="form-group row">
+                        <label class="col-2 col-form-label">First Name:</label>
+                        <div class="col-4">
+                            @Html.DisplayFor(m => m.FirstName)
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-2 col-form-label">Last Name:</label>
+                        <div class="col-4">
+                            @Html.DisplayFor(m => m.LastName)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <a class="card-link" data-toggle="collapse" href="#collapseOne">
+                XML Entities reference
+            </a>
+        </div>
+        <div id="collapseOne" class="collapse" data-parent="#accordion">
+            <div class="card-body">
+                <ol>
+                    <li>
+                        An XML External Entity attack is a type of attack against an application that parses XML input.
+                        <br />
+                        This attack occurs when XML input containing a reference to an external entity is processed by a weakly configured XML parser
+                    </li>
+                    <li>
+                        XML schema specification types: XSD, DTD and XSX
+                    </li>
+                    <li>
+                        XML Internal Entities:
+                        <br />
+                        <code>&lt;!ENTITY entity-name &quot;entity-value&quot;&gt;</code>
+                        <br />
+                        Example:
+                        <br />
+                        <code>&lt;!ENTITY name &quot;Mark&quot;&gt;</code>
+                        <br />
+                        <code>&lt;!ENTITY company &quot;Facebook&quot;&gt;</code>
+                    </li>
+                    <li>
+                        XML External Entities:
+                        <br />
+                        <code>&lt;!ENTITY entity-name SYSTEM &quot;URI/URL&quot;&gt;</code>
+                        <br />
+                        Example:
+                        <br />
+                        <code>&lt;!ENTITY name SYSTEM &quot;"http://www.xyz.com/entities.dtd"&quot;&gt;</code>
+                        <br />
+                        <code>&lt;!ENTITY company SYSTEM &quot;"http://www.xyz.com/entities.dtd"&quot;&gt;</code>
+                    </li>
+                    <li>
+                        <b>Possible outcomes:</b> disclosure of confidential data, denial of service, server side request forgery,
+                        <br />
+                        port scanning from the perspective of the machine where the parser is located, and other system impacts.
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
+                Dot net framework Specific
+            </a>
+        </div>
+        <div id="collapseTwo" class="collapse" data-parent="#accordion">
+            <div class="card-body">
+                <ol>
+                    <li>Linq to xml: parses only the elements within the XML file, so DTDs are ignored altogether. </li>
+                    <li>
+                        XmlDocument:
+                        <ul>
+                            <li>
+                                Prior 4.5.2, it is unsafe
+                                <br />
+                                <pre>
+static void LoadXML()
+{
+  string xml = "<?xml version=\"1.0\" ?><!DOCTYPE doc [<!ENTITY win SYSTEM \"file:///C:/Users/user/Documents/testdata2.txt\">]><doc>&win;</doc>";
+
+  XmlDocument xmlDoc = new XmlDocument();
+  xmlDoc.XmlResolver = null;   // Setting this to NULL disables DTDs - Its NOT null by default.
+  xmlDoc.LoadXml(xml);
+  Console.WriteLine(xmlDoc.InnerText);
+  Console.ReadLine();
+}                               </pre>
+                            </li>
+                            <li>After 4.5.2, it is handled by setting XmlResolver null by default.</li>
+                        </ul>
+                    </li>
+                    <li>XmlNodeReader: objects are safe by default and will ignore DTDs even when constructed with an unsafe parser or wrapped in another unsafe parser</li>
+                    <li>XmlReader: Will only unsafe if the DtdProcessing is set to Parse and XmlReaderSetting's XmlResolver is set to a non-null XmlResolver with default or unsafe settings.</li>
+                    <li>
+                        XmlTextReader:
+                        <ul>
+                            <li>
+                                Prior to .NET 4.0
+                                <br />
+                                <pre>
+XmlTextReader reader = new XmlTextReader(stream);
+reader.ProhibitDtd = true;  // NEEDED because the default is FALSE!!
+                                </pre>
+                            </li>
+                            <li>
+                                .Net 4.0-.Net 4.5.2
+                                <br />
+                                <pre>
+XmlTextReader reader = new XmlTextReader(stream);
+reader.DtdProcessing = DtdProcessing.Prohibit;  // NEEDED because the default is Parse, Ingonre will not throw error with <!DOCTYPE> but will simply skip over.!!
+                                </pre>
+                            </li>
+                            <li>
+                                .Net 4.5.2 and later
+                                <br />
+                                XmlTextReader's internal XmlResolver is set to null by default
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        XPathNavigator
+                        <br />
+                        <pre>
+                            XmlReader reader = XmlReader.Create("example.xml");
+                            XPathDocument doc = new XPathDocument(reader);
+                            XPathNavigator nav = doc.CreateNavigator();
+                            string xml = nav.InnerXml.ToString();
+                        </pre>
+                    </li>
+                    <li>
+                        XslCompiledTransform
+                        <br />
+                        It is safe by default because the default parser of the Transform() methods is an XmlReader, which is safe by default.
+                    </li>
+                    <li><a href="https://docs.microsoft.com/en-us/visualstudio/code-quality/ca3075-insecure-dtd-processing?view=vs-2019">CA3075:Insecure DTD Processsing</a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>

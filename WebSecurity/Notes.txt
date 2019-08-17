@@ -1,0 +1,1 @@
+dependency-check.bat --project "Web Security" --scan "C:\Raxit\Temp\WebSecurity1\WebSecurity\WebSecurity\WebSecurity\bin"

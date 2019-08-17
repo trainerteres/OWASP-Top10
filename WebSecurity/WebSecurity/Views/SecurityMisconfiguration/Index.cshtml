@@ -1,0 +1,108 @@
+﻿
+@{
+    ViewBag.Title = "Owasp - Security Misconfiguration";
+}
+
+@Html.AntiForgeryToken()
+@{
+    Response.Headers.Remove("X-Frame-Options");
+}
+
+<h2>Security Misconfiguration</h2>
+<img width="300" style="align-self:center" height="300" src="~/Content/Images/SecurityMisconfiguration.png" />
+
+<div id="accordion">
+    <div class="card">
+        <div class="card-header">
+            <a class="card-link" data-toggle="collapse" href="#collapseOne">
+                Dot net framework : Error handling
+            </a>
+        </div>
+        <div id="collapseOne" class="collapse" data-parent="#accordion">
+            <div class="card-body">
+                <ol>
+                    <li>Configure the Web.Config's System.Web section's customError section</li>
+                    <li>Use HandleError attribute</li>
+                    <li>Set general error page in global.asax</li>
+                    <li>In the machine.config set &lt;deployment retail="true" /&gt;</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
+                Maintenance of Security configurations
+            </a>
+        </div>
+        <div id="collapseTwo" class="collapse" data-parent="#accordion">
+            <div class="card-body">
+                <ol>
+                    <li>Maintain security configurations for:</li>
+                    <li>Applications, frameworks, application servers, web servers, database servers and platforms</li>
+                    <li>Keep all the packages upto date</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <a class="collapsed card-link" data-toggle="collapse" href="#collapseThree">
+                On live server turn-off debugging
+            </a>
+        </div>
+        <div id="collapseThree" class="collapse" data-parent="#accordion">
+            <div class="card-body">
+                <ol>
+                    <li>Don't use #if DEBUG</li>
+                    <li>Don't turn-off validations with #if DEBUG eg. Page.EnableEventValidation = false;</li>
+                    <li>Deploy Release build dll's on the server.</li>
+                    <li>
+                        In Web.config, there should not be
+                        <br />&lt;system.web&gt;
+                        <br />&#009;&lt;compilation debug="true"&gt;
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <a class="collapsed card-link" data-toggle="collapse" href="#collapseFour">
+                Encrypt sensitive configuration data
+            </a>
+        </div>
+        <div id="collapseFour" class="collapse" data-parent="#accordion">
+            <div class="card-body">
+                <span>Steps:</span>
+                <ol>
+                    <li>Developer Command Prompt</li>
+                    <li>cd C:\Windows\Microsoft.NET\Framework\v4.0.30319</li>
+                    <li>aspnet_regiis -pef "connectionStrings" "C:\Project Folder Path" </li>
+                    <li>aspnet_regiis -pe "system.web/machineKey" -app "/MyApplication" </li>
+                    <li>More info on : <a>https://msdn.microsoft.com/en-us/library/dtkwfdky.aspx</a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <a class="collapsed card-link" data-toggle="collapse" href="#collapseFive">
+                Principle of least privilege
+            </a>
+        </div>
+        <div id="collapseFive" class="collapse" data-parent="#accordion">
+            <div class="card-body">
+                <span>
+                    <br/>On Production Database
+                    <br/>Connection string account should not have read/write access to all the tables
+                    <br/>Instead there should be control over tables in securable options
+                </span>
+            </div>
+        </div>
+    </div>
+</div>

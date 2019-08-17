@@ -1,0 +1,211 @@
+﻿@using WebSecurity.Encryption;
+
+@{
+    ViewBag.Title = "Owasp - Cross site scripting";
+    var reflection = ViewBag.Reflection;
+    string persistence = ViewBag.Persistence != null ? ViewBag.Persistence : string.Empty;
+}
+
+@Html.AntiForgeryToken()
+@{
+    Response.Headers.Remove("X-Frame-Options");
+}
+
+<h2>Cross site scripting</h2>
+
+<div id="accordion">
+    <div class="card">
+        <div class="card-header">
+            <a class="card-link" data-toggle="collapse" href="#collapseOne">
+                Reflected XSS : Ajax calls
+            </a>
+        </div>
+        <div id="collapseOne" class="collapse show" data-parent="#accordion">
+            <div class="card-body">
+                <form id="reflectedForm">
+                    <div class="form-group row">
+                        <label class="col-2 col-form-label">Name:</label>
+                        <div class="col-4">
+                            @Html.TextBox("reflectedNameTxt", string.Empty, new { id = "reflectedNameTxt", @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="offset-2">
+                            <div class="btn-group">
+                                <input type="submit" id="reflectedSubmit" class=" btn btn-outline-primary" value="Submit Value" style="margin-left:16px" />
+                                <input type="submit" id="reflectedFormSubmit" class="btn btn-outline-primary" value="Submit Form" style="margin-left:16px" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <div id="reflectedData">
+                                @{ reflection?.ToString(); }
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <a class="card-link" data-toggle="collapse" href="#collapseTwo">
+                Persistent XSS
+            </a>
+        </div>
+        <div id="collapseTwo" class="collapse" data-parent="#accordion">
+            <div class="card-body">
+                <form id="persistedForm">
+                    <div class="form-group row">
+                        <label class="col-2 col-form-label">Name:</label>
+                        <div class="col-4">
+                            @Html.TextBox("persistenceNameTxt", string.Empty, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="offset-2">
+                            <input type="submit" id="persistenceSubmit" class="btn btn-outline-primary" value="submit" style="margin-left:16px" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-12">
+                            <div id="persistedData">
+                                @{ persistence?.ToString(); }
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <a class="card-link" data-toggle="collapse" href="#collapseThree">
+                Preventing cross site scripting
+            </a>
+        </div>
+        <div id="collapseThree" class="collapse" data-parent="#accordion">
+            <div class="card-body">
+                @Html.ActionLink("Prevent cross site scripting", "SecureXSS")
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <a class="card-link" data-toggle="collapse" href="#collapseFour">
+                Information
+            </a>
+        </div>
+        <div id="collapseFour" class="collapse" data-parent="#accordion">
+            <div class="card-body">
+                <ol>
+                    <li>
+                        Types of XSS
+                        <ol>
+                            <li>Reflected</li>
+                            <li>Persistent</li>
+                            <li>DOM based</li>
+                        </ol>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <a class="card-link" data-toggle="collapse" href="#collapseFive">
+                Coding Precautions!!!
+            </a>
+        </div>
+        <div id="collapseFive" class="collapse" data-parent="#accordion">
+            <div class="card-body">
+                <ol>
+                    <li>Use the vulurability scanner for whole web-site. (Online or offline)</li>
+                    <li>Enable content security policy in web.config</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $("#reflectedSubmit").click(function (event) {
+                var value = $("#reflectedNameTxt").val();
+                var obj = { "name": value };
+                var jsonObj = JSON.stringify(obj);
+                //alert(jsonObj);
+
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("ReflectedJson","CrossSiteScript")',
+                    data: jsonObj,
+                    dataType: "json",
+                    contentType: "application/json",
+                    success: function (data) {
+                        $("#reflectedData").html(data); // <-- should not be used
+                    },
+                    error: function (data) {
+                        alert(data);
+                    }
+                });
+                event.preventDefault();
+
+                return false;
+            });
+
+
+            $("#reflectedFormSubmit").click(function (event) {
+                var value = $("#reflectedForm").serialize();
+                //console.log(value);
+
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("ReflectedJsonForm","CrossSiteScript")',
+                    data: value,
+                    dataType: "html",
+                    success: function (data) {
+                        var jsonData = JSON.parse(data);
+                        $("#reflectedData").html(jsonData);
+                    },
+                    error: function (data) {
+                        alert(data);
+                    }
+                });
+                event.preventDefault();
+
+                return false;
+            });
+
+
+            $("#persistenceSubmit").click(function (event) {
+                var value = $("#persistenceNameTxt").val();
+                var obj = { "name": value };
+                var jsonObj = JSON.stringify(obj);
+                //alert(jsonObj);
+
+                $.ajax({
+                    type: "POST",
+                    url:  '@Url.Action("PersistedJson","CrossSiteScript")',
+                    data: jsonObj,
+                    dataType: "json",
+                    contentType: "application/json",
+                    success: function (data) {
+                        $("#persistedData").html(data);
+                    },
+                    error: function (data) {
+                        alert(data);
+                    }
+                });
+                event.preventDefault();
+
+                return false;
+            });
+
+        });
+    </script>
+
+}

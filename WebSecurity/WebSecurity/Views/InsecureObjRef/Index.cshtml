@@ -1,0 +1,96 @@
+﻿@using WebSecurity.Encryption;
+
+@{
+    ViewBag.Title = "Owasp - Insecured object reference";
+}
+
+<style type="text/css">
+    .control-margin {
+        margin-right: 5px;
+        margin-left: 5px;
+    }
+
+    .card-title {
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+</style>
+
+@Html.AntiForgeryToken()
+
+<h2>Insecure Direct Object Reference</h2>
+
+
+<div class="card" style="margin:20px">
+    <div class="container">
+        <h3 class="card-title">
+            Insecure Version
+        </h3>
+        <div class="card-text">
+            @using (Html.BeginForm("InsecuredDirectObjRef", "InsecureObjRef", FormMethod.Get, new { @class = "form" }))
+            {
+                @Html.Hidden("AccountNumber", 123456, new { @class = "form-control" })
+                <div class="form-group row">
+                    <div class="offset-2">
+                        <input type="submit" class="form-control btn btn-primary" value="Get Account Details" style="margin-left:16px" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<div class="card" style="margin:20px">
+    <div class="container">
+        <h3 class="card-title">
+            Secured Version : User restriction
+        </h3>
+        <div class="card-text">
+            @using (Html.BeginForm("GetDetailsWithUserRestriction", "InsecureObjRef", FormMethod.Get, new { @class = "form" }))
+            {
+
+                @Html.Hidden("AccountNumber", 123789, new { @class = "form-control" })
+                <div class="form-group row">
+                    <div class="offset-2">
+                        <input type="submit" class="form-control btn btn-primary" value="Get Account Details" style="margin-left:16px" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<div class="card" style="margin:20px">
+    <div class="container">
+        <h3 class="card-title">
+            Secured Version : Obfuscation
+        </h3>
+        <div class="card-text">
+            @using (Html.BeginForm("StaticIndirectReferenceMap", "InsecureObjRef", FormMethod.Get, new { @class = "form" }))
+            {
+                @Html.Hidden("AccountNumber", StaticReferenceMap.GetIndirectReferenceMap<int>(123456), new { @class = "form-control" })
+                <div class="form-group row">
+                    <div class="offset-2">
+                        <input type="submit" class="form-control btn btn-primary" value="Get Account Details" style="margin-left:16px" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<div class="card" style="margin:20px">
+    <div class="container badge-info text-white">
+        <h3 class="card-title">
+            Information
+        </h3>
+        <div class="card-text">
+            <ul>
+                <li>Sensitive Data : may includes password , credit card , personal information etc.</li>
+            </ul>
+            <ol>
+                <li>Have proper access control in place</li>
+                <li>Obfuscation is not ultimate way to protect unauthorized access</li>
+                <li>Sites with sensitive, financial and classified information should use obfuscation</li>
+            </ol>
+        </div>
+    </div>
+</div>
+

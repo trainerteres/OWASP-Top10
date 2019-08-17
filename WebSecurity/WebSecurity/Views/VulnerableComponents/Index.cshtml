@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Owasp - Using components with known vulnerabilities";
+}
+
+@Html.AntiForgeryToken()
+
+@{
+    Response.Headers.Remove("X-Frame-Options");
+}
+
+<h2>Vulnerable Components</h2>
+
+<div id="accordion">
+    <div class="card">
+        <div class="card-header">
+            <a class="collapsed card-link" data-toggle="collapse" href="#collapseOne">
+                Solutions
+            </a>
+        </div>
+        <div id="collapseOne" class="collapse show" data-parent="#accordion">
+            <div class="card-body">
+                <ol>
+                    <li>Keep the .net framework updated with the latest patches</li>
+                    <li>Keep the Nuget Packages up to date</li>
+                    <li>Run the OWASP dependency checker</li>
+                    <li><a href="https://www.owasp.org/index.php/OWASP_Dependency_Check">OWASP Dependency-Check Download</a></li>
+                    <li><a href="https://jeremylong.github.io/DependencyCheck/dependency-check-cli/index.html">Dependency-Check cli documentation</a></li>
+                    <li>Remove unused dependencies, files, component and documentation</li>
+                    <li>Need to check if OS, web/application server, dbms, APIs, runtime environments etc are vulnerable, unsupported or out of date</li>
+                    <li><a href="https://cve.mitre.org/">CVE - Check Vulnerabilities and Exposures</a></li>
+                    <li><a href="https://nvd.nist.gov/">NVD - National Vulnerability Database</a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>

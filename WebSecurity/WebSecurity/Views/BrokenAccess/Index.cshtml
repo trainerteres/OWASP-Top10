@@ -1,0 +1,100 @@
+﻿@using WebSecurity.Encryption;
+
+@{
+
+    ViewBag.Title = "Owasp - Broken Access";
+}
+
+@{
+    Response.Headers.Remove("X-Frame-Options");
+}
+
+@Html.AntiForgeryToken()
+
+<h2>Broken Access Control = Insecure Direct Object References + Missing Function Level Access Control</h2>
+
+<div id="accordion">
+    <div class="card">
+        <div class="card-header">
+            <a class="card-link" data-toggle="collapse" href="#collapseOne">
+                Insecure Version
+            </a>
+        </div>
+        <div id="collapseOne" class="collapse show" data-parent="#accordion">
+            <div class="card-body">
+                @using (Html.BeginForm("InsecuredDirectObjRef", "BrokenAccess", FormMethod.Get, new { @class = "form" }))
+                {
+                    @Html.Hidden("AccountNumber", 123456, new { @class = "form-control" })
+                    <div class="form-group row">
+                        <div class="col-2">Welcome User!</div>
+                        <div class="col-3">
+                            <input type="submit" class="form-control btn btn-primary" value="Get Account Details" style="margin-left:16px" />
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <a class="card-link" data-toggle="collapse" href="#collapseTwo">
+                Secured Version : User restriction
+            </a>
+        </div>
+        <div id="collapseTwo" class="collapse" data-parent="#accordion">
+            <div class="card-body">
+                @using (Html.BeginForm("GetDetailsWithUserRestriction", "BrokenAccess", FormMethod.Get, new { @class = "form" }))
+                {
+
+                    @Html.Hidden("AccountNumber", 123789, new { @class = "form-control" })
+                    <div class="form-group row">
+                        <div class="col-2">Welcome User!</div>
+                        <div class="col-3">
+                            <input type="submit" class="form-control btn btn-primary" value="Get Account Details" style="margin-left:16px" />
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <a class="card-link" data-toggle="collapse" href="#collapseThree">
+                Secured Version : Obfuscation
+            </a>
+        </div>
+        <div id="collapseThree" class="collapse" data-parent="#accordion">
+            <div class="card-body">
+                @using (Html.BeginForm("StaticIndirectReferenceMap", "BrokenAccess", FormMethod.Get, new { @class = "form" }))
+                {
+                    @Html.Hidden("AccountNumber", StaticReferenceMap.GetIndirectReferenceMap<int>(123456), new { @class = "form-control" })
+                    <div class="form-group row">
+                        <div class="col-2">Welcome User!</div>
+                        <div class="col-3">
+                            <input type="submit" class="form-control btn btn-primary" value="Get Account Details" style="margin-left:16px" />
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <a class="card-link" data-toggle="collapse" href="#collapseFour">
+                Coding Precautions!!!
+            </a>
+        </div>
+        <div id="collapseFour" class="collapse" data-parent="#accordion">
+            <div class="card-body">
+                <ol>
+                    <li>Use Authorize attribute for all access controlled method</li>
+                    <li>Do not expose database Id's directly for edit or use the guid or use obfuscation.</li>
+                    <li>Obfuscation is not ultimate way to protect unauthorized access</li>
+                    <li>Sites with sensitive, financial and classified information should use obfuscation</li>
+                    <li>When the object is getting edited or deleted with id, check users rights to do that.</li>
+                    <li>If custom authorization attribute is used have the thorough testing in place.</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>

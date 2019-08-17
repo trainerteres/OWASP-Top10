@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "Owasp - Insufficient logging and monitoring";
+}
+
+@Html.AntiForgeryToken()
+
+@{
+    Response.Headers.Remove("X-Frame-Options");
+}
+
+<h2>Insufficient Logging and Monitoring.</h2>
+
+<div id="accordion">
+    <div class="card">
+        <div class="card-header">
+            <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
+                Insufficient logging and monitoring
+            </a>
+        </div>
+        <div id="collapseTwo" class="collapse show" data-parent="#accordion">
+            <div class="card-body">
+                <ol>
+                    <li>Auditable events are not logged: logins, failed logins, high-value transactions</li>
+                    <li>Warnings and errors generate poor logs.</li>
+                    <li>Logs of applications and APIs are not monitored for suspicious activity</li>
+                    <li>Logs are only stored locally</li>
+                    <li>Appropriate alerting thresolds and response escalation processes are not in place</li>
+                    <li>Penetration testing and scans by DAST tools do not trigger alerts</li>
+                    <li>Logging and alerts are visible to an attacker</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
+                Prevention
+            </a>
+        </div>
+        <div id="collapseTwo" class="collapse" data-parent="#accordion">
+            <div class="card-body">
+                <ol>
+                    <li>Log all the valuable transaction and hold for sufficient time for delayed forensic analysis</li>
+                    <li>Valuable logs should be tamper free and should not be deleted eg. Append only db table.</li>
+                    <li><a href="https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-61r2.pdf">NIST 800-61</a></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
