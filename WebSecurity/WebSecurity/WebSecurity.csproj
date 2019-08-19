@@ -248,7 +248,7 @@
     <Compile Include="Controllers\MVC\InsecureObjRefController.cs" />
     <Compile Include="Controllers\MVC\InsufficientLoggingController.cs" />
     <Compile Include="Controllers\MVC\ManageController.cs" />
-    <Compile Include="Controllers\MVC\OwaspMvcController.cs" />
+    <Compile Include="Controllers\MVC\OwaspMvc2017Controller.cs" />
     <Compile Include="Controllers\MVC\RolesAdminController.cs" />
     <Compile Include="Controllers\MVC\SecurityMisconfigurationController.cs" />
     <Compile Include="Controllers\MVC\SensitiveDataController.cs" />
@@ -412,7 +412,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\OwaspMvc\Index.cshtml" />
+    <Content Include="Views\OwaspMvc2017\Index.cshtml" />
     <Content Include="Views\Injection\Index.cshtml" />
     <Content Include="Views\BrokenAuthentication\Index.cshtml" />
     <Content Include="Views\RolesAdmin\Create.cshtml" />

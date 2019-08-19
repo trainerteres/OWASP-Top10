@@ -2,7 +2,7 @@
 
 namespace WebSecurity.Controllers
 {
-    public class OwaspMvcController : Controller
+    public class OwaspMvc2017Controller : Controller
     {
         // GET: OwaspMvc
         public ActionResult Index()
