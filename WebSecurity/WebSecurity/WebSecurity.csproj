@@ -234,6 +234,7 @@
     <Compile Include="Auth\CustomTicketDataFormat.cs" />
     <Compile Include="Common\AllowXRequestsEveryXSecondsAttribute.cs" />
     <Compile Include="Common\InMemoryRepository.cs" />
+    <Compile Include="Common\InMemorySessionManager.cs" />
     <Compile Include="Controllers\API\AccountController.cs" />
     <Compile Include="Controllers\API\TestTable1Controller.cs" />
     <Compile Include="Controllers\MVC\AccountController.cs" />
