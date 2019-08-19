@@ -36,7 +36,7 @@ namespace WebSecurity
                 {
                     AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
                     CookieName = CookieExtractor.CookieName,
-                    TicketDataFormat = new CustomTicketDataFormat(),
+                    // TicketDataFormat = new CustomTicketDataFormat(),
                     LoginPath = new PathString("/Account/Login"),
                     /* OWASP specific */
                     CookieHttpOnly = true,

@@ -21,6 +21,7 @@ namespace WebSecurity.Controllers
             var value = form["adoNetNameTxt"].ToString();
             string connectionString = ConfigurationManager.ConnectionStrings["DefaultConnection"].ToString();
             string commandText = "Insert into TestTable1(Name) Values('" + value + "')";
+            // INSERT INTO TestTable1 (Name) VALUES ('Test Value');
             // test'); DELETE TestTable1; PRINT('Hacked!
 
             try

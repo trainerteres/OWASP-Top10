@@ -26,7 +26,7 @@ namespace WebSecurity.Filter
         }
 
         public void OnAuthentication(AuthenticationContext filterContext)
-        {
+        {   /*
             if (filterContext.HttpContext.User.Identity.IsAuthenticated)
             {
                 // Get Existing Cookie
@@ -37,13 +37,14 @@ namespace WebSecurity.Filter
 
                 var lastIssuedOnClaim = identity.Claims.FirstOrDefault(x => x.Type == CookieExtractor.Claim_LastIssuedOn);
 
+                
                 var currentDate = DateTime.Now;
-                var validUser = true;
-                // Check the browser info and last issued on parameters
-                // If Valid then, Update SessionManager table and replace cookie
+                // var validUser = true;
+                //// Check the browser info and last issued on parameters
+                //// If Valid then, Update SessionManager table and replace cookie
 
                 ApplicationUser currentUser = new ApplicationUser();
-
+                
                 using (var appDb = new ApplicationDbContext())
                 {
                     var UserManager = new ApplicationUserManager(new UserStore<ApplicationUser>(appDb));
@@ -126,14 +127,15 @@ namespace WebSecurity.Filter
                         filterContext.HttpContext.Response.Cookies.Add(newCookie);
                     }
                 }
-            }
+                
+            }*/
         }
 
         public void OnAuthenticationChallenge(AuthenticationChallengeContext filterContext)
         {
             var user = filterContext.HttpContext.User;
 
-            if(user == null && !user.Identity.IsAuthenticated)
+            if (user == null && !user.Identity.IsAuthenticated)
             {
                 filterContext.Result = new RedirectResult("~/Login");
             }
