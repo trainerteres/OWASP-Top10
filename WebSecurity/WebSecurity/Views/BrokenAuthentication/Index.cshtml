@@ -84,6 +84,28 @@
     </div>-->
     <div class="card">
         <div class="card-header">
+            <a class="card-link" data-toggle="collapse" href="#collapseFour">
+                Major Incidents
+            </a>
+        </div>
+        <div id="collapseFour" class="collapse" data-parent="#accordion">
+            <div class="card-body">
+                <ol>
+                    <li>In 2012, South Carolina Department of Revenue was hacked with Broken Authentication\Session Management\Sensitive Data Exposure, around 387,000 credit card numbers and 3.6 million Social Security Numbers were stolen.
+                    <br/>
+                    The reasons behind the hack were
+                    <ul>
+                        <li>Default password set in the authentication layer.</li>
+                        <li>Lack of encryption on the sensitive data.</li>
+                    </ul>
+                    </li>
+                    <li>In 2017, with the Identity fraud cases 16 billion USD stolen from 15.4 million US consumers.</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
             <a class="card-link" data-toggle="collapse" href="#collapseThree">
                 Coding Precautions!!!
             </a>
@@ -92,10 +114,11 @@
             <div class="card-body">
                 <ol>
                     <li>Create cookies with custom contents</li>
-                    <li>Ensure cookies are sent via Http Only, by setting CookieHttpOnly=true;<br/>
+                    <li>
+                        Ensure cookies are sent via Http Only, by setting CookieHttpOnly=true;<br />
                         <code>
-                            CookieHttpOnly = true,<br/>
-                            ExpireTimeSpan = TimeSpan.FromMinutes(60),<br/>
+                            CookieHttpOnly = true,<br />
+                            ExpireTimeSpan = TimeSpan.FromMinutes(60),<br />
                             SlidingExpiration = false,
                         </code>
                     </li>

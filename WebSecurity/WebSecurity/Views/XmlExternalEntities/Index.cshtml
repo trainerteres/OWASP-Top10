@@ -106,7 +106,26 @@
             </div>
         </div>
     </div>
-
+    <div class="card">
+        <div class="card-header">
+            <a class="card-link" data-toggle="collapse" href="#collapseThree">
+                Major Incidents
+            </a>
+        </div>
+        <div id="collapseThree" class="collapse" data-parent="#accordion">
+            <div class="card-body">
+                <ol>
+                    <li>In 2017, Major flaw detected in the IDEs like Android Studio, Eclipse, APKTool etc.
+                    <br/> It was observed that malicious user can inject code into online repositories eg Github and then access file on the developer's machine.'
+                    <br/> The reason behind the flaw was
+                    <ul>
+                        <li>Vulenerabilites were detected due to external reference in XML is processed without further check.</li>
+                    </ul>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
     <div class="card">
         <div class="card-header">
             <a class="collapsed card-link" data-toggle="collapse" href="#collapseTwo">
@@ -181,7 +200,10 @@ reader.DtdProcessing = DtdProcessing.Prohibit;  // NEEDED because the default is
                         <br />
                         It is safe by default because the default parser of the Transform() methods is an XmlReader, which is safe by default.
                     </li>
-                    <li><a href="https://docs.microsoft.com/en-us/visualstudio/code-quality/ca3075-insecure-dtd-processing?view=vs-2019">CA3075:Insecure DTD Processsing</a></li>
+                    <li>
+                        <a href="https://docs.microsoft.com/en-us/visualstudio/code-quality/ca3075-insecure-dtd-processing?view=vs-2019
+">CA3075:Insecure DTD Processsing</a>
+                    </li>
                 </ol>
             </div>
         </div>

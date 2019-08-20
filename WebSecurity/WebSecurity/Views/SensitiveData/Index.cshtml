@@ -11,9 +11,33 @@
     Response.Headers.Remove("X-Frame-Options");
 }
 
+<h2>Sensitive Data Exposure</h2>
+
 @{ Html.RenderPartial("_SymmetricEncryption"); }
 @{ Html.RenderPartial("_AsymmetricEncryption"); }
 
+<div class="card">
+    <div class="card-header">
+        <a class="card-link" data-toggle="collapse" href="#collapseThree">
+            Major Incidents
+        </a>
+    </div>
+    <div id="collapseThree" class="collapse" data-parent="#accordion">
+        <div class="card-body">
+            <ol>
+                <li>
+                    As reported by Google, from Sep 2016 to Feb 2018, from the Cloudfare Server (providing CDN, DNS, DDoS protection and security) the private keys between machine was leaked. Cloud fare has 6 million website clients
+                    <br />
+                    The reason behind sensitive data exposure was
+                    <ul>
+                        <li>Many web application defenses were built with the assumption of a secure TLS communication channel.</li>
+                        <li>Broken html tags were incorrectly parsed which cause the information from a random portion of the server's memory to be returned.</li>
+                    </ul>
+                </li>
+            </ol>
+        </div>
+    </div>
+</div>
 <div id="accordion">
     <div class="card">
         <div class="card-header">
