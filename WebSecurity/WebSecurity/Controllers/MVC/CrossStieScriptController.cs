@@ -19,6 +19,7 @@ namespace WebSecurity.Controllers
 
         [HttpPost]
         [ValidateInput(false)]
+        // <script>alert("You are hacked!")</script>
         // <image width="300" height="300" src="https://images.unsplash.com/photo-1502367448277-82e29b176948?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"/>
         public ActionResult ReflectedJsonForm(FormCollection form)
         {
@@ -28,6 +29,7 @@ namespace WebSecurity.Controllers
 
 
         [HttpPost]
+        // <script>alert("You are hacked!")</script>
         // <image width="300" height="300" src="https://images.unsplash.com/photo-1502367448277-82e29b176948?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"/>
         public JsonResult ReflectedJson(string name)
         {

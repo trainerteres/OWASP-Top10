@@ -3,14 +3,18 @@
     ViewBag.Title = "OwaspMvc - Injection";
 }
 
-<h2>OWASP MVC</h2>
-
 @Html.AntiForgeryToken()
 
 @{
     Response.Headers.Remove("X-Frame-Options");
 }
 
+<div class="jumbotron">
+    <h2>OWASP Top 10 - 2017 for MVC</h2>
+    <br/>
+    <h4>How the security risks are listed?</h4>
+    <p>According to Wikipedia, The OWASP Top 10 - 2017 is the published result of recent research based on comprehensive data compiled from over 40 partner organizations. From this data, approximately 2.3 million vulnerabilities were discovered across over 50,000 applications</p>
+</div>
 <div class="row">
 
     <div class="owasp-rows card text-white bg-info">
