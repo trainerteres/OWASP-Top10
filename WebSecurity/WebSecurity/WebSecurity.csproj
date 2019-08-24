@@ -249,6 +249,7 @@
     <Compile Include="Controllers\MVC\InsecureObjRefController.cs" />
     <Compile Include="Controllers\MVC\InsufficientLoggingController.cs" />
     <Compile Include="Controllers\MVC\ManageController.cs" />
+    <Compile Include="Controllers\MVC\OwaspMvc2013Controller.cs" />
     <Compile Include="Controllers\MVC\OwaspMvc2017Controller.cs" />
     <Compile Include="Controllers\MVC\RolesAdminController.cs" />
     <Compile Include="Controllers\MVC\SecurityMisconfigurationController.cs" />
@@ -457,6 +458,7 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\BrokenAccess\AccountDetails.cshtml" />
+    <Content Include="Views\OwaspMvc2013\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

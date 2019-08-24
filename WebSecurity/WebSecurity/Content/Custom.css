@@ -2,3 +2,19 @@
     width: 100%;
     margin: 7px 15px 7px 15px;
 }
+
+
+.owasp-high {
+    background-color:orangered;
+    text-align:center;
+}
+
+.owasp-medium {
+    background-color: orange;
+    text-align: center;
+}
+
+.owasp-low {
+    background-color: gold;
+    text-align: center;
+}

@@ -11,140 +11,250 @@
 
 <div class="jumbotron">
     <h2>OWASP Top 10 - 2017 for MVC</h2>
-    <br/>
+    <br />
     <h4>How the security risks are listed?</h4>
     <p>According to Wikipedia, The OWASP Top 10 - 2017 is the published result of recent research based on comprehensive data compiled from over 40 partner organizations. From this data, approximately 2.3 million vulnerabilities were discovered across over 50,000 applications</p>
 </div>
 <div class="row">
+    <table class="table table-bordered table-responsive" width="100%">
+        <tr>
+            <th>
+                Security Risk
+            </th>
+            <th>
+                Exploitability
+            </th>
+            <th>
+                Prevalence
+            </th>
+            <th>
+                Detectability
+            </th>
+            <th>
+                Technical Impacts
+            </th>
+        </tr>
+        <tr>
+            <td>
+                @Html.ActionLink("Code Injection", "Index", "Injection", null)
+            </td>
+            <td class="owasp-high">
+                Easy: 3
+            </td>
+            <td class="owasp-medium">
+                Common: 2
+            </td>
+            <td class="owasp-high">
+                Easy: 3
+            </td>
+            <td class="owasp-high">
+                Severe: 3
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.ActionLink("Broken Authentication", "Index", "BrokenAuthentication", null)
+            </td>
+            <td class="owasp-high">
+                Easy: 3
+            </td>
+            <td class="owasp-medium">
+                Common: 2
+            </td>
+            <td class="owasp-medium">
+                Average: 2
+            </td>
+            <td class="owasp-high">
+                Severe: 3
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.ActionLink("Sensitive Data Exposure", "Index", "SensitiveData", null)
+            </td>
+            <td class="owasp-medium">
+                Average: 2
+            </td>
+            <td class="owasp-high">
+                Widespread: 3
+            </td>
+            <td class="owasp-medium">
+                Average: 2
+            </td>
+            <td class="owasp-high">
+                Severe: 3
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.ActionLink("Sensitive Data Exposure", "Index", "SensitiveData", null)
+            </td>
+            <td class="owasp-medium">
+                Average: 2
+            </td>
+            <td class="owasp-high">
+                Widespread: 3
+            </td>
+            <td class="owasp-medium">
+                Average: 2
+            </td>
+            <td class="owasp-high">
+                Severe: 3
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.ActionLink("Broken Access Control", "Index", "BrokenAccess", null)
+            </td>
+            <td class="owasp-medium">
+                Average: 2
+            </td>
+            <td class="owasp-medium">
+                Common: 2
+            </td>
+            <td class="owasp-medium">
+                Average: 2
+            </td>
+            <td class="owasp-high">
+                Severe: 3
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.ActionLink("Security Misconfiguration", "Index", "SecurityMisconfiguration", null)
+            </td>
+            <td class="owasp-high">
+                Easy: 3
+            </td>
+            <td class="owasp-high">
+                Widespread: 3
+            </td>
+            <td class="owasp-high">
+                Easy: 3
+            </td>
+            <td class="owasp-medium">
+                Moderate: 2
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.ActionLink("Cross Site Scripting", "Index", "CrossStieScript", null)
+            </td>
+            <td class="owasp-high">
+                Easy: 3
+            </td>
+            <td class="owasp-high">
+                Widespread: 3
+            </td>
+            <td class="owasp-high">
+                Easy: 3
+            </td>
+            <td class="owasp-medium">
+                Moderate: 2
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.ActionLink("Insecure Deserialization", "Index", "InsecureDeserialization", null)
+            </td>
+            <td class="owasp-low">
+                Difficult: 1
+            </td>
+            <td class="owasp-medium">
+                Common: 2
+            </td>
+            <td class="owasp-medium">
+                Average: 2
+            </td>
+            <td class="owasp-high">
+                Severe: 3
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.ActionLink("Using Components with Known Vulnerabilities", "Index", "VulnerableComponents", null)
+            </td>
+            <td align="center" class="owasp-medium">
+                Average: 2
+            </td>
+            <td class="owasp-high">
+                Widespread: 3
+            </td>
+            <td class="owasp-medium">
+                Average: 2
+            </td>
+            <td class="owasp-medium">
+                Moderate: 2
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.ActionLink("Insufficient Logging & Monitoring", "Index", "InsufficientLogging", null)
+            </td>
+            <td align="center" class="owasp-medium">
+                Average: 2
+            </td>
+            <td class="owasp-high">
+                Widespread: 3
+            </td>
+            <td class="owasp-low">
+                Difficult: 1
+            </td>
+            <td class="owasp-medium">
+                Moderate: 2
+            </td>
+        </tr>
+    </table>
+</div>
 
-    <div class="owasp-rows card text-white bg-info">
-        <div class="card-body">
-            <div class="card-text">
-                @Html.ActionLink("Injection", "Index", "Injection", null, new { @class = "text-white" })
-            </div>
+<!--Latest Till here-->
+<!--
+<div class="owasp-rows card text-white bg-info">
+    <div class="card-body">
+        <div class="card-text">
+            @Html.ActionLink("Unvalidated redirects and forwards", "Index", "VulnerableComponents", null, new { @class = "text-white" })
         </div>
     </div>
+</div>
 
-    <div class="owasp-rows card text-white bg-info">
-        <div class="card-body">
-            <div class="card-text">
-                @Html.ActionLink("Broken authentication", "Index", "BrokenAuthentication", null, new { @class = "text-white" })
-            </div>
+<div class="owasp-rows card text-white bg-info">
+    <div class="card-body">
+        <div class="card-text">
+            @Html.ActionLink("Insecure Direct Object Reference", "Index", "InsecureObjRef", null, new { @class = "text-white" })
         </div>
     </div>
+</div>
 
-    <div class="owasp-rows card text-white bg-info">
-        <div class="card-body">
-            <div class="card-text">
-                @Html.ActionLink("Sensitive data exposure", "Index", "SensitiveData", null, new { @class = "text-white" })
-            </div>
+<div class="owasp-rows card text-white bg-info">
+    <div class="card-body">
+        <div class="card-text">
+            @Html.ActionLink("Cross-Site Request Forgery", "Index", "CrossSiteRequestForgery", null, new { @class = "text-white" })
         </div>
     </div>
+</div>
 
-    <div class="owasp-rows card text-white bg-info">
-        <div class="card-body">
-            <div class="card-text">
-                @Html.ActionLink("XML external entities", "Index", "XmlExternalEntities", null, new { @class = "text-white" })
-            </div>
-        </div>
+
+<div class="col-md-12">
+    <div class="alert alert-primary">
+        Insecured Cryptographic storage
     </div>
+</div>
 
-    <div class="owasp-rows card text-white bg-info">
-        <div class="card-body">
-            <div class="card-text">
-                @Html.ActionLink("Broken access control", "Index", "BrokenAccess", null, new { @class = "text-white" })
-            </div>
-        </div>
+<div class="col-md-12">
+    <div class="alert alert-primary">
+        Failure to restrict URL access
     </div>
+</div>
 
-    <div class="owasp-rows card text-white bg-info">
-        <div class="card-body">
-            <div class="card-text">
-                @Html.ActionLink("Security misconfiguration", "Index", "SecurityMisconfiguration", null, new { @class = "text-white" })
-            </div>
-        </div>
+<div class="col-md-12">
+    <div class="alert alert-primary">
+        Insufficient transport layer protection
     </div>
+</div>
 
-    <div class="owasp-rows card text-white bg-info">
-        <div class="card-body">
-            <div class="card-text">
-                @Html.ActionLink("Cross-site scripting", "Index", "CrossSiteScript", null, new { @class = "text-white" })
-            </div>
-        </div>
+<div class="col-md-12">
+    <div class="alert alert-primary">
+        Unvalidated redirects and forwards
     </div>
-
-    <div class="owasp-rows card text-white bg-info">
-        <div class="card-body">
-            <div class="card-text">
-                @Html.ActionLink("Insecure deserialization", "Index", "InsecureDeserialization", null, new { @class = "text-white" })
-            </div>
-        </div>
-    </div>
-
-    <div class="owasp-rows card text-white bg-info">
-        <div class="card-body">
-            <div class="card-text">
-                @Html.ActionLink("Using components with known vulunerabilities", "Index", "VulnerableComponents", null, new { @class = "text-white" })
-            </div>
-        </div>
-    </div>
-
-    <div class="owasp-rows card text-white bg-info">
-        <div class="card-body">
-            <div class="card-text">
-                @Html.ActionLink("Insufficient logging and monitoring", "Index", "InsufficientLogging", null, new { @class = "text-white" })
-            </div>
-        </div>
-    </div>
-
-    <!--Latest Till here-->
-    <!--
-    <div class="owasp-rows card text-white bg-info">
-        <div class="card-body">
-            <div class="card-text">
-                @Html.ActionLink("Unvalidated redirects and forwards", "Index", "VulnerableComponents", null, new { @class = "text-white" })
-            </div>
-        </div>
-    </div>
-
-    <div class="owasp-rows card text-white bg-info">
-        <div class="card-body">
-            <div class="card-text">
-                @Html.ActionLink("Insecure Direct Object Reference", "Index", "InsecureObjRef", null, new { @class = "text-white" })
-            </div>
-        </div>
-    </div>
-
-    <div class="owasp-rows card text-white bg-info">
-        <div class="card-body">
-            <div class="card-text">
-                @Html.ActionLink("Cross-Site Request Forgery", "Index", "CrossSiteRequestForgery", null, new { @class = "text-white" })
-            </div>
-        </div>
-    </div>
-
-
-    <div class="col-md-12">
-        <div class="alert alert-primary">
-            Insecured Cryptographic storage
-        </div>
-    </div>
-
-    <div class="col-md-12">
-        <div class="alert alert-primary">
-            Failure to restrict URL access
-        </div>
-    </div>
-
-    <div class="col-md-12">
-        <div class="alert alert-primary">
-            Insufficient transport layer protection
-        </div>
-    </div>
-
-    <div class="col-md-12">
-        <div class="alert alert-primary">
-            Unvalidated redirects and forwards
-        </div>
-    </div>-->
+</div>-->
 </div>
