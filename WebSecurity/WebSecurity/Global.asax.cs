@@ -13,6 +13,7 @@ namespace WebSecurity
     {
         protected void Application_Start()
         {
+            GlobalFilters.Filters.Add(new RequireHttpsAttribute());
             InMemoryRepository rep = new InMemoryRepository();
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
