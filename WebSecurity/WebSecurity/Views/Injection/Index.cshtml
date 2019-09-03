@@ -1,9 +1,14 @@
 ﻿
 @{
     ViewBag.Title = "Owasp - Injection";
+    var switchesXPath = new List<SelectListItem> {
+            new SelectListItem { Text = "Off", Value = "Off", Selected = true },
+            new SelectListItem { Text = "On", Value = "On", Selected = false },
+            new SelectListItem { Text = "Not In Use", Value = "NotInUse", Selected = false },
+    };
 }
 
-@Html.AntiForgeryToken()
+    @Html.AntiForgeryToken()
 
 <h2>Injection</h2>
 <div id="accordion">
@@ -60,6 +65,40 @@
             </div>
         </div>
     </div>
+
+    <div class="card">
+        <div class="card-header">
+            <a class="card-link" data-toggle="collapse" href="#collapseFive">
+                XPath injection
+            </a>
+        </div>
+        <div id="collapseFive" class="collapse" data-parent="#accordion">
+            <div class="card-body">
+                @using (Html.BeginForm("XPathInjection", "Injection", FormMethod.Post, new { @class = "form" }))
+                {
+                    Response.Headers.Remove("X-Frame-Options");
+                    <div class="form-group row">
+                        <label class="col-2 col-form-label">ServiceName:</label>
+                        <div class="col-4">
+                            @Html.TextBox("xpathQuery", string.Empty, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-2 col-form-label">Switch:</label>
+                        <div class="col-4">
+                            @Html.DropDownList("xpathSwitch", switchesXPath, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="offset-2">
+                            <input type="submit" class="form-control btn btn-primary" value="submit" style="margin-left:16px" />
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+
     <div class="card">
         <div class="card-header">
             <a class="card-link" data-toggle="collapse" href="#collapseFive">
