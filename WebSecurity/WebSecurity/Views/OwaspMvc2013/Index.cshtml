@@ -3,5 +3,204 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+@Html.AntiForgeryToken()
 
+@{
+    Response.Headers.Remove("X-Frame-Options");
+}
+
+<div class="jumbotron">
+    <h2>OWASP Top 10 - 2013 for MVC</h2>
+</div>
+<div class="row">
+    <table class="table table-bordered table-responsive" width="100%">
+        <tr>
+            <th>
+                Security Risk
+            </th>
+            <th>
+                Exploitability
+            </th>
+            <th>
+                Prevalence
+            </th>
+            <th>
+                Detectability
+            </th>
+            <th>
+                Technical Impacts
+            </th>
+        </tr>
+        <tr>
+            <td>
+                @Html.ActionLink("Code Injection", "Index", "Injection")
+            </td>
+            <td class="owasp-high">
+                Easy: 3
+            </td>
+            <td class="owasp-medium">
+                Common: 2
+            </td>
+            <td class="owasp-medium">
+                Average: 2
+            </td>
+            <td class="owasp-high">
+                Severe: 3
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.ActionLink("Broken Authentication and Session Management", "Index", "BrokenAuthentication")
+            </td>
+            <td class="owasp-medium">
+                Average: 2
+            </td>
+            <td class="owasp-high">
+                Widespread: 3
+            </td>
+            <td class="owasp-medium">
+                Average: 2
+            </td>
+            <td class="owasp-high">
+                Severe: 3
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.ActionLink("Cross Site Scripting", "Index", "CrossStieScript")
+            </td>
+            <td class="owasp-medium">
+                Average: 2
+            </td>
+            <td class="owasp-very-high">
+                Very Widespread: 4
+            </td>
+            <td class="owasp-high">
+                Easy: 3
+            </td>
+            <td class="owasp-medium">
+                Moderate: 2
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.ActionLink("Insecure Direct Object References", "Index", "InsecureObjRef")
+            </td>
+            <td class="owasp-high">
+                Easy: 2
+            </td>
+            <td class="owasp-medium">
+                Common: 2
+            </td>
+            <td class="owasp-high">
+                Easy: 3
+            </td>
+            <td class="owasp-medium">
+                Moderate: 3
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.ActionLink("Security Misconfiguration", "Index", "SecurityMisconfiguration")
+            </td>
+            <td class="owasp-high">
+                Easy: 2
+            </td>
+            <td class="owasp-medium">
+                Common: 2
+            </td>
+            <td class="owasp-high">
+                Easy: 3
+            </td>
+            <td class="owasp-medium">
+                Moderate: 2
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.ActionLink("Sensitive Data Exposure", "Index", "SensitiveData")
+            </td>
+            <td class="owasp-low">
+                Difficult: 1
+            </td>
+            <td class="owasp-low">
+                Uncommon: 1
+            </td>
+            <td class="owasp-medium">
+                Average: 2
+            </td>
+            <td class="owasp-high">
+                Severe: 3
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Missing function level access control
+            </td>
+            <td class="owasp-high">
+                Easy: 3
+            </td>
+            <td class="owasp-medium">
+                Common: 2
+            </td>
+            <td class="owasp-medium">
+                Average: 2
+            </td>
+            <td class="owasp-medium">
+                Moderate: 2
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.ActionLink("Cross-site request forgery", "Index", "CrossSiteRequestForgery")
+            </td>
+            <td class="owasp-medium">
+                Average: 2
+            </td>
+            <td class="owasp-medium">
+                Common: 2
+            </td>
+            <td class="owasp-high">
+                Easy: 3
+            </td>
+            <td class="owasp-medium">
+                Moderate: 2
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.ActionLink("Using components with known vulnerabilities", "Index", "VulnerableComponents")
+            </td>
+            <td class="owasp-medium">
+                Average: 2
+            </td>
+            <td class="owasp-high">
+                Widespread: 3
+            </td>
+            <td class="owasp-low">
+                Difficult: 1
+            </td>
+            <td class="owasp-medium">
+                Moderate: 2
+            </td>
+        </tr>
+
+        <tr>
+            <td>
+                @Html.ActionLink("Unvalidated redirects and forwards", "Index", "UnvalidatedRedirects")
+            </td>
+            <td class="owasp-medium">
+                Average: 2
+            </td>
+            <td class="owasp-low">
+                Uncommon: 1
+            </td>
+            <td class="owasp-high">
+                Easy: 3
+            </td>
+            <td class="owasp-medium">
+                Moderate: 2
+            </td>
+        </tr>
+    </table>
+</div>

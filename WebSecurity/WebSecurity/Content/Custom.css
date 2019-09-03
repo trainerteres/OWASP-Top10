@@ -9,6 +9,11 @@
     margin: 7px 15px 7px 15px;
 }
 
+.owasp-very-high {
+    background-color: deeppink;
+    text-align: center;
+}
+
 .owasp-high {
     background-color:orangered;
     text-align:center;
