@@ -15,7 +15,7 @@
     <div class="card">
         <div class="card-header">
             <a class="card-link" data-toggle="collapse" href="#collapseOne">
-                ADO.net SQL injection
+                Demo: ADO.net SQL injection
             </a>
         </div>
         <div id="collapseOne" class="collapse show" data-parent="#accordion">
@@ -42,7 +42,7 @@
     <div class="card">
         <div class="card-header">
             <a class="card-link" data-toggle="collapse" href="#collapseTwo">
-                EF raw SQL query - SQL injection
+                Demo: EF raw SQL query - SQL injection
             </a>
         </div>
         <div id="collapseTwo" class="collapse" data-parent="#accordion">
@@ -69,7 +69,7 @@
     <div class="card">
         <div class="card-header">
             <a class="card-link" data-toggle="collapse" href="#collapseFive">
-                XPath injection
+                Demo: XPath injection
             </a>
         </div>
         <div id="collapseFive" class="collapse" data-parent="#accordion">
@@ -78,9 +78,9 @@
                 {
                     Response.Headers.Remove("X-Frame-Options");
                     <div class="form-group row">
-                        <label class="col-2 col-form-label">ServiceName:</label>
+                        <label class="col-2 col-form-label">Services:</label>
                         <div class="col-4">
-                            @Html.TextBox("xpathQuery", string.Empty, new { @class = "form-control" })
+                            @Html.TextArea("xpathQuery", string.Empty, new { @class = "text-area", @rows = 6, @cols = 120 })
                         </div>
                     </div>
                     <div class="form-group row">

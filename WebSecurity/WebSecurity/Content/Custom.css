@@ -1,8 +1,13 @@
-﻿.owasp-rows {
+﻿.text-area {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+
+.owasp-rows {
     width: 100%;
     margin: 7px 15px 7px 15px;
 }
-
 
 .owasp-high {
     background-color:orangered;
