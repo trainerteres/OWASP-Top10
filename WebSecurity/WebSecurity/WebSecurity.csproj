@@ -315,6 +315,7 @@
     <Content Include="Content\Files\XPathXml.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Images\CSRF.png" />
     <Content Include="Content\Images\Logging.png" />
     <Content Include="Content\Images\owasp.png" />
     <Content Include="Content\custom.css" />

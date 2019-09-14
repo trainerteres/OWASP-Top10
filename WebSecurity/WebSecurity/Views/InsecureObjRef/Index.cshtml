@@ -20,77 +20,104 @@
 
 <h2>Insecure Direct Object Reference</h2>
 
-
-<div class="card" style="margin:20px">
-    <div class="container">
-        <h3 class="card-title">
-            Insecure Version
-        </h3>
-        <div class="card-text">
-            @using (Html.BeginForm("InsecuredDirectObjRef", "InsecureObjRef", FormMethod.Get, new { @class = "form" }))
-            {
-                @Html.Hidden("AccountNumber", 123456, new { @class = "form-control" })
-                <div class="form-group row">
-                    <div class="offset-2">
-                        <input type="submit" class="form-control btn btn-primary" value="Get Account Details" style="margin-left:16px" />
+<div id="accordion">
+    <div class="card">
+        <div class="card-header">
+            <a class="card-link" data-toggle="collapse" href="#collapseOne">
+                Insecure version
+            </a>
+        </div>
+        <div id="collapseOne" class="collapse show" data-parent="#accordion">
+            <div class="card-body">
+                @using (Html.BeginForm("InsecuredDirectObjRef", "InsecureObjRef", FormMethod.Get, new { @class = "form" }))
+                {
+                    @Html.Hidden("AccountNumber", 123456, new { @class = "form-control" })
+                    <div class="form-group row">
+                        <div class="col-2">Welcome User!</div>
+                        <div class="col-3">
+                            <input type="submit" class="form-control btn btn-primary" value="Get Account Details" style="margin-left:16px" />
+                        </div>
                     </div>
-                </div>
-            }
+                }
+            </div>
         </div>
     </div>
-</div>
-<div class="card" style="margin:20px">
-    <div class="container">
-        <h3 class="card-title">
-            Secured Version : User restriction
-        </h3>
-        <div class="card-text">
-            @using (Html.BeginForm("GetDetailsWithUserRestriction", "InsecureObjRef", FormMethod.Get, new { @class = "form" }))
-            {
+    <div class="card">
+        <div class="card-header">
+            <a class="card-link" data-toggle="collapse" href="#collapseTwo">
+                Secured version : User restriction
+            </a>
+        </div>
+        <div id="collapseTwo" class="collapse" data-parent="#accordion">
+            <div class="card-body">
+                @using (Html.BeginForm("GetDetailsWithUserRestriction", "InsecureObjRef", FormMethod.Get, new { @class = "form" }))
+                {
 
-                @Html.Hidden("AccountNumber", 123789, new { @class = "form-control" })
-                <div class="form-group row">
-                    <div class="offset-2">
-                        <input type="submit" class="form-control btn btn-primary" value="Get Account Details" style="margin-left:16px" />
+                    @Html.Hidden("AccountNumber", 123789, new { @class = "form-control" })
+                    <div class="form-group row">
+                        <div class="col-2">Welcome User!</div>
+                        <div class="col-3">
+                            <input type="submit" class="form-control btn btn-primary" value="Get Account Details" style="margin-left:16px" />
+                        </div>
                     </div>
-                </div>
-            }
+                }
+            </div>
         </div>
     </div>
-</div>
-<div class="card" style="margin:20px">
-    <div class="container">
-        <h3 class="card-title">
-            Secured Version : Obfuscation
-        </h3>
-        <div class="card-text">
-            @using (Html.BeginForm("StaticIndirectReferenceMap", "InsecureObjRef", FormMethod.Get, new { @class = "form" }))
-            {
-                @Html.Hidden("AccountNumber", StaticReferenceMap.GetIndirectReferenceMap<int>(123456), new { @class = "form-control" })
-                <div class="form-group row">
-                    <div class="offset-2">
-                        <input type="submit" class="form-control btn btn-primary" value="Get Account Details" style="margin-left:16px" />
+    <div class="card">
+        <div class="card-header">
+            <a class="card-link" data-toggle="collapse" href="#collapseThree">
+                Secured version : Obfuscation
+            </a>
+        </div>
+        <div id="collapseThree" class="collapse" data-parent="#accordion">
+            <div class="card-body">
+                @using (Html.BeginForm("StaticIndirectReferenceMap", "InsecureObjRef", FormMethod.Get, new { @class = "form" }))
+                {
+                    @Html.Hidden("AccountNumber", StaticReferenceMap.GetIndirectReferenceMap<int>
+                        (123456), new { @class = "form-control" })
+                    <div class="form-group row">
+                        <div class="col-2">Welcome User!</div>
+                        <div class="col-3">
+                            <input type="submit" class="form-control btn btn-primary" value="Get Account Details" style="margin-left:16px" />
+                        </div>
                     </div>
-                </div>
-            }
+                }
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <a class="card-link" data-toggle="collapse" href="#collapseFive">
+                Major incidents
+            </a>
+        </div>
+        <div id="collapseFive" class="collapse" data-parent="#accordion">
+            <div class="card-body">
+                <ol>
+                    <li>In Jan 2014, Snapchat detected to reveal the users Phone numbers. The initial findings were ignored by Snapchat considering theoritical and a week later 4.6 million user names and phone numbers were stolen.</li>
+                    <li>In Aug 2015, Certain Facebook page found vulnerable where user can assign the admin rights to himself.</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <a class="card-link" data-toggle="collapse" href="#collapseFour">
+                Coding precautions!!!
+            </a>
+        </div>
+        <div id="collapseFour" class="collapse" data-parent="#accordion">
+            <div class="card-body">
+                <ol>
+                    <li>Use Authorize attribute for all access controlled method</li>
+                    <li>Do not expose database Id's directly for edit or use the guid or use obfuscation.</li>
+                    <li>Obfuscation is not ultimate way to protect unauthorized access</li>
+                    <li>Sites with sensitive, financial and classified information should use obfuscation</li>
+                    <li>When the object is getting edited or deleted with id, check users rights to do that.</li>
+                    <li>If custom authorization attribute is used have the thorough testing in place.</li>
+                </ol>
+            </div>
         </div>
     </div>
 </div>
-<div class="card" style="margin:20px">
-    <div class="container badge-info text-white">
-        <h3 class="card-title">
-            Information
-        </h3>
-        <div class="card-text">
-            <ul>
-                <li>Sensitive Data : may includes password , credit card , personal information etc.</li>
-            </ul>
-            <ol>
-                <li>Have proper access control in place</li>
-                <li>Obfuscation is not ultimate way to protect unauthorized access</li>
-                <li>Sites with sensitive, financial and classified information should use obfuscation</li>
-            </ol>
-        </div>
-    </div>
-</div>
-
