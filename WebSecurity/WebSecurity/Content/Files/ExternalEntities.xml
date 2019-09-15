@@ -4,7 +4,7 @@
   <!ELEMENT student (firstname, lastname)>
   <!ELEMENT firstname (#PCDATA)>
   <!ELEMENT lastname (#PCDATA)>
-  <!ENTITY firstname SYSTEM "http://localhost/WebSecurity/XmlExternalEntities/GetDtd">
+  <!ENTITY firstname SYSTEM "https://localhost/WebSecurity/XmlExternalEntities/GetDtd">
   <!ENTITY lastname "Stark">
 ]>
 <student>
