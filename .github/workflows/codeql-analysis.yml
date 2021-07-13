@@ -49,7 +49,7 @@ jobs:
     
     - name: Install dependencies
       run: dotnet restore
-      working-directory: OWASP-Top10/WebSecurity/
+      working-directory: WebSecurity/
     - name: Build
       run: dotnet build --configuration Release --no-restore
     - name: Test
