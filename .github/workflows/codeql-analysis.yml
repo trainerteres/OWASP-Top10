@@ -45,8 +45,8 @@ jobs:
     - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
       uses: actions/setup-dotnet@v1.7.2
       with:
-        #dotnet-version: ${{ matrix.dotnet-version }}
-        dotnet-version: ['3.0', '3.1.x', '5.0.x' ]
+        dotnet-version: ${{ matrix.dotnet-version }}
+        #dotnet-version: ['3.0', '3.1.x', '5.0.x' ]
     
     - name: Install dependencies
       #working-directory: ./WebSecurity
@@ -55,7 +55,7 @@ jobs:
       
     - name: Build
       #run: dotnet build ./WebSecurity/WebSecurity/WebSecurity.csproj --configuration Release --no-restore
-      run: dotnet build ./WebSecurity/WebSecurity.sln --configuration Release --no-restore
+      run: dotnet build ./WebSecurity/WebSecurity/WebSecurity.csproj --configuration Release --no-restore
       
     - name: Test
       run: dotnet test --no-restore --verbosity normal
