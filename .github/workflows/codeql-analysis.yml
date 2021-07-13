@@ -53,9 +53,9 @@ jobs:
       #run: dotnet restore ./WebSecurity/WebSecurity.sln
       run: dotnet restore ./WebSecurity/WebSecurity.sln
       
-    #- name: Build
+    - name: Build
      # #run: dotnet build ./WebSecurity/WebSecurity/WebSecurity.csproj --configuration Release --no-restore
-      #run: dotnet build ./WebSecurity/WebSecurity/WebSecurity.csproj --configuration Release --no-restore
+      run: dotnet build ./WebSecurity/WebSecurity.sln --configuration Release --no-restore
       
     #- name: Test
      # run: dotnet test --no-restore --verbosity normal
