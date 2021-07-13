@@ -54,7 +54,7 @@ jobs:
       
     - name: Build
       #run: dotnet build ./WebSecurity/WebSecurity/WebSecurity.csproj --configuration Release --no-restore
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build ./WebSecurity/WebSecurity.sln --configuration Release --no-restore
       
     - name: Test
       run: dotnet test --no-restore --verbosity normal
