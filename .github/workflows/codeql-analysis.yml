@@ -49,7 +49,7 @@ jobs:
     
     - name: Install dependencies
       working-directory: ./WebSecurity
-      run: dotnet restore ./WebSecurity/WebSecurity/WebSecurity.csproj
+      run: dotnet restore ./WebSecurity/WebSecurity.sln
       
     - name: Build
       run: dotnet build ./WebSecurity/WebSecurity/WebSecurity.csproj --configuration Release --no-restore
