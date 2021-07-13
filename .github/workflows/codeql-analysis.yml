@@ -48,6 +48,7 @@ jobs:
         dotnet-version: ${{ matrix.dotnet-version }}
     
     - name: Install dependencies
+      working-directory: ./WebSecurity/WebSecurity
       run: dotnet restore ./WebSecurity/WebSecurity.sln
       
     - name: Build
