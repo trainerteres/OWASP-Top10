@@ -48,10 +48,10 @@ jobs:
         dotnet-version: ${{ matrix.dotnet-version }}
     
     - name: Install dependencies
-      run: dotnet restore
-      working-directory: ./WebSecurity
+      run: dotnet restore ./WebSecurity/WebSecurity.sln
+      
     - name: Build
-      run: dotnet build --configuration Release --no-restore
+      run: dotnet build ./WebSecurity/WebSecurity/WebSecurity.csproj --configuration Release --no-restore
     - name: Test
       run: dotnet test --no-restore --verbosity normal
         
